@@ -44,8 +44,11 @@ void setup() {
 }
 
 void loop() {
+  lcd.setCursor(0,0); // force cursor to first line
+  lcd.print("Servo Position");
   lcd.setCursor(1,1);
-  lcd.print(pos);
+  lcd.print(pos); // print position in degrees on second line
+  delay(10);
   buttonstateONE = digitalRead(buttonONE);
   if (buttonstateONE == HIGH) {
     pos=(pos+1); // move servo 1 degree positively
@@ -64,9 +67,7 @@ void loop() {
     servo1.write(pos); // tell servo to move to variable "pos"
     delay(20); // wait 20ms to slow down servo movement 
     // decrease delay time to increase servo speed, increase delay to decrease servo speed
-  }
-  lcd.noDisplay();
-  delay(5); //turn off display every 5ms
-  lcd.display();
-  delay(10); //reinitialize display
+    lcd.clear();
+    delay(1); // clear display when push button is pressed 
+  } 
 }
